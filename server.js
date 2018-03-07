@@ -71,7 +71,11 @@ app.post('/recipes', jsonParser, (req, res) => {
   const item = Recipes.create(req.body.name, req.body.ingredients);
   res.status(201).json(item);
 });
-
+app.delete('/recipes/:id', (req,res)=> {
+  Recipes.delete(req.params.id);
+  console.log(`delete recipe ran \`${req.params.id}\``);
+  res.status(204).end();
+});
 
 app.get('/recipes', (req, res) => {
   res.json(Recipes.get());
